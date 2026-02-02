@@ -4,10 +4,12 @@ import board.Tablero;
 
 public class Agent extends Entity implements Runnable {
   private Tablero tablero;
+  private Neo neo;
 
-  public Agent(int x, int y, char symbol, Status status, Tablero tablero) {
+  public Agent(int x, int y, char symbol, Status status, Tablero tablero, Neo neo) {
     super(x, y, symbol, status);
     this.tablero = tablero;
+    this.neo = neo;
   }
 
   public void run() {
@@ -34,9 +36,11 @@ public class Agent extends Entity implements Runnable {
       moveToNeo(getX(), getY(), neoX, neoY);
       tablero.printBoard();
 
-      if (getX() == neoX && getY() == neoY) {
-        tablero.getEntity(getX(), getY()).setStatus(Status.DEAD);
-        System.out.println("El Agente ha atrapado a Neo!");
+      if (getX() == neo.getX() && getY() == neo.getY()) {
+        if (neo.getStatus() == Status.ALIVE) {
+          neo.setStatus(Status.DEAD);
+          // System.out.println("El Agente atrapo a Neo");
+        }
         break;
       }
 
@@ -54,7 +58,6 @@ public class Agent extends Entity implements Runnable {
 
     int diffX = neoX - getX();
     int diffY = neoY - getY();
-
 
     if (Math.abs(diffX) >= Math.abs(diffY)) {
       int stepX = diffX > 0 ? 1 : -1;

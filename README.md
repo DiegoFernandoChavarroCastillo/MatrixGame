@@ -1,78 +1,107 @@
-🎮 MatrixGame - JUEGO DE CONCURRENCIA EN JAVA
+# MatrixGame
 
-📋 DESCRIPCIÓN DEL PROYECTO
-Este proyecto es un juego desarrollado en Java 100% diseñado específicamente para aprender y practicar los conceptos de hilos (Threads) y concurrencia. El juego simula un tablero donde múltiples entidades se mueven simultáneamente, cada una en su propio hilo, utilizando mecanismos de sincronización para coordinar sus acciones.
+[![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow)]()
+[![Licencia](https://img.shields.io/badge/licencia-MIT-blue)]()
+[![Versión](https://img.shields.io/badge/versión-1.0.0-green)]()
 
-🎯 OBJETIVO DE APRENDIZAJE
-- Comprender el concepto de hilos (Threads) en Java
-- Aplicar mecanismos de sincronización (locks, monitores)
-- Manejar condiciones de carrera (race conditions)
-- Implementar concurrencia en un escenario práctico
-- Coordinar múltiples procesos concurrentes
+## 📌 Descripción
+MatrixGame es un simulador concurrente desarrollado en Java que recrea el enfrentamiento entre Neo y los Agentes dentro de la Matrix. Este proyecto está diseñado específicamente para demostrar y practicar conceptos avanzados de **programación concurrente**, **hilos (Threads)** y **sincronización** de recursos compartidos.
 
-🕹️ MECÁNICA DEL JUEGO
+El juego simula un tablero donde Neo debe navegar evitando a los agentes para alcanzar el teléfono y escapar, mientras que los agentes lo persiguen de forma autónoma, todo ejecutándose simultáneamente.
 
-ENTIDADES DEL JUEGO
-Símbolo | Entidad  | Comportamiento
---------|----------|---------------
-N       | Neo      | Debe llegar al teléfono para ganar
-A       | Agente   | Intenta capturar a Neo moviéndose hacia él
-T       | Teléfono | Entidad estática, objetivo de Neo
-M       | Muro     | Obstáculo que bloquea el movimiento
+## 🚀 Características Principales
+- ✅ **Concurrencia Real:** Cada entidad móvil (Neo, Agentes) se ejecuta en su propio hilo independiente (`Thread`).
+- ✅ **Sincronización de Tablero:** Gestión de recursos compartidos para evitar condiciones de carrera en el movimiento.
+- ✅ **IA de Persecución:** Los agentes cuentan con lógica para rastrear y moverse hacia la posición de Neo.
+- ✅ **Simulación en Tiempo Real:** El estado del juego se actualiza y visualiza dinámicamente en la consola.
 
-REGLAS DEL JUEGO
-1. Victoria: Neo gana al llegar a la casilla del teléfono (T)
-2. Derrota: Neo pierde si un agente (A) llega a su casilla
-3. Movimiento: Todas las entidades móviles se mueven simultáneamente
-4. Concurrencia: Cada entidad móvil se ejecuta en un hilo independiente
+## 🖼️ Vista Previa / Demostración
+```text
+Neo entro en la Matrix...
+. . . . . . . . . . 
+. . . . . . . . . . 
+. . . . . . A . . . 
+. . . . N . . . . . 
+. . . . . . # . . . 
+. . . . . . . T . . 
+. . . # . . . . . . 
+. . . . . . . . . . 
+. . . . . . . . . . 
+. . . . . . . . . . 
+```
+*Representación visual del tablero en consola.*
 
-🏗️ ARQUITECTURA TÉCNICA
+---
 
-COMPONENTES PRINCIPALES
-📁 MatrixGame
-├── 📁 src
-│   ├── 📁 entities
-│   │   ├── Neo.java           # Hilo controlado por jugador/IA
-│   │   ├── Agente.java        # Hilos controlados por IA
-│   │   └── Telefono.java      # Entidad estática
-│   ├── 📁 board
-│   │   ├── Tablero.java       # Matriz N x N compartida
-│   │   └── Casilla.java       # Celda individual del tablero
-│   ├── 📁 game
-│   │   ├── GameController.java # Controlador principal
-│   │   └── GameState.java      # Estado del juego
-│   ├── 📁 concurrency
-│   │   ├── LockManager.java    # Gestor de sincronización
-│   │   └── MovementLock.java   # Lock para movimientos
-│   └── Main.java               # Punto de entrada
+## 📦 Instalación
 
-CONCEPTOS DE CONCURRENCIA A IMPLEMENTAR
-1. Hilos (Threads): Cada entidad móvil será un hilo
-2. Sincronización: Uso de synchronized, ReentrantLock, o Semaphore
-3. Comunicación entre hilos: Wait/Notify o Condition objects
-4. Sección crítica: El tablero como recurso compartido
-5. Deadlock prevention: Estrategias para evitar bloqueos
+### Prerrequisitos
+- **Java SDK 11** o superior.
+- Algún IDE (IntelliJ IDEA, Eclipse, VS Code) o terminal con `javac`.
 
+### Pasos de instalación
+```bash
+# 1. Clonar repositorio
+git clone https://github.com/tuusuario/MatrixGame.git
 
+# 2. Entrar al directorio
+cd MatrixGame
 
-🛠️ REQUISITOS TÉCNICOS
-- Java: JDK 11 o superior
-- IDE: IntelliJ IDEA, Eclipse, VS Code o similar
-- Build Tool: Maven o Gradlo (opcional)
-- Conocimientos Previos: Programación OOP en Java básica
+# 3. Compilar el proyecto
+javac -d bin src/**/*.java src/Main.java
 
-📖 ESTRUCTURA DEL CÓDIGO FUTURO
-El código seguirá principios de:
-- Encapsulación: Cada entidad maneja su propio estado
-- Bajo acoplamiento: Comunicación a través de interfaces definidas
-- Alta cohesión: Cada clase tiene responsabilidad única
-- Thread safety: Diseño seguro para concurrencia desde el inicio
+# 4. Iniciar aplicación
+java -cp bin Main
+```
 
-🎯 OBJETIVOS DE APRENDIZAJE ESPERADOS
-Al completar este proyecto, deberías poder:
-1. Diseñar sistemas multi-hilo
-2. Identificar y resolver problemas de concurrencia
-3. Implementar patrones de sincronización
-4. Depurar problemas en entornos concurrentes
-5. Diseñar algoritmos thread-safe
+## 🛠️ Uso
+Para ejecutar el juego, simplemente inicia la clase principal `Main`. Neo intentará moverse por el tablero mientras el Agente lo busca.
+
+### Comandos comunes
+```bash
+# Compilar
+javac -d bin src/**/*.java src/Main.java
+
+# Ejecutar
+java -cp bin Main
+```
+
+## 🏗️ Estructura del Proyecto
+```text
+├── src/
+│   ├── board/         # Lógica del tablero y casillas
+│   │   ├── Tablero.java
+│   │   └── Casilla.java
+│   ├── entities/      # Definición de hilos y entidades (Neo, Agent, etc)
+│   │   ├── Neo.java
+│   │   ├── Agent.java
+│   │   ├── Entity.java
+│   │   └── Status.java
+│   └── Main.java       # Punto de entrada del programa
+├── bin/               # Archivos compilados (.class)
+└── README.md          # Documentación
+```
+
+## 🧪 Ejecutar Tests
+Actualmente, las pruebas se realizan mediante la ejecución de la clase `Main` y la observación del comportamiento de los hilos en la consola.
+
+## 🤝 Contribuir
+1. Fork el proyecto.
+2. Crear rama: `git checkout -b feature/nueva-funcionalidad`.
+3. Commit cambios: `git commit -m 'Agrega nueva funcionalidad'`.
+4. Push: `git push origin feature/nueva-funcionalidad`.
+5. Abrir Pull Request.
+
+## 📄 Licencia
+Este proyecto está bajo la licencia MIT. Ver el archivo LICENSE para más detalles.
+
+## 👥 Autores
+- **Diego Chavarro** - [@DiegoFernandoChavarroCastillo](https://github.com/DiegoFernandoChavarroCastillo)
+
+## 🙏 Agradecimientos
+- A la saga *The Matrix* por la inspiración temática.
+- Documentación de Java sobre `Thread` y `Concurrency`.
+
+## 📞 Contacto
+Email: chavarrodiegofernando3@gmail.com
 

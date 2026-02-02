@@ -32,8 +32,13 @@ public abstract class Entity {
     public char getSymbol() {
         return symbol;
     }
+
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public String info() {

@@ -20,7 +20,6 @@ public class Neo extends Entity implements Runnable {
         int phoneX = -1;
         int phoneY = -1;
 
-
         for (int i = 0; i < tablero.getSize(); i++) {
             for (int j = 0; j < tablero.getSize(); j++) {
                 Entity e = tablero.getEntity(i, j);
@@ -35,8 +34,13 @@ public class Neo extends Entity implements Runnable {
         if (phoneX == -1)
             return;
 
-        while (getX() != phoneX || getY() != phoneY) {
+        while (getStatus() != Status.DEAD) {
             moveToPhone(phoneX, phoneY);
+            if (getX() == phoneX && getY() == phoneY) {
+                setStatus(Status.FREE);
+                tablero.removeEntity(getX(), getY());
+                break;
+            }
             tablero.printBoard();
             try {
                 Thread.sleep(1000);
@@ -44,15 +48,12 @@ public class Neo extends Entity implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("Neo ha llegado al teléfono!");
-        setStatus(Status.FREE);
     }
 
     public void moveToPhone(int phoneX, int phoneY) {
         int nextX = getX();
         int nextY = getY();
 
-        
         int diffX = phoneX - getX();
         int diffY = phoneY - getY();
 
@@ -94,7 +95,6 @@ public class Neo extends Entity implements Runnable {
         if (entidad instanceof Wall || entidad instanceof Agent) {
             return false;
         }
-
 
         return true;
     }
