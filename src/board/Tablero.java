@@ -37,6 +37,10 @@ public class Tablero {
         board[newX][newY].setEntity(entity);
     }
 
+    public synchronized void removeEntity(int x, int y) {
+        board[x][y].setEntity(null);
+    }
+
     public synchronized void printBoard() {
         System.out.println("--------------------------------");
         for (int i = 0; i < size; i++) {
@@ -55,4 +59,5 @@ public class Tablero {
     public int getSize() {
         return size;
     }
+
 }
