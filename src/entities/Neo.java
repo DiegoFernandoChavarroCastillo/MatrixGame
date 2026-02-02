@@ -8,7 +8,18 @@ public class Neo extends Entity implements Runnable{
         
     }
 
-    public void moveToPhone(){
+    public void moveToPhone(int x, int y, int phoneX, int phoneY){
+        if (x < phoneX){
+            x++;
+        }else if (x > phoneX){
+            x--;
+        }
+        if (y < phoneY){
+            y++;
+        }else if (y > phoneY){
+            y--;
+        }
+
         
     }
 }
