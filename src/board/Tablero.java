@@ -1,4 +1,5 @@
 package board;
+
 import entities.Entity;
 
 public class Tablero {
@@ -6,14 +7,14 @@ public class Tablero {
     private Casilla[][] board;
     private Entity[] entities;
 
-    public Tablero(int size, Entity[] entities){
+    public Tablero(int size, Entity[] entities) {
         this.size = size;
         this.board = new Casilla[size][size];
         this.entities = entities;
 
     }
 
-    public void initBoard(){
+    public void initBoard() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 board[i][j] = new Casilla(i, j);
@@ -21,22 +22,37 @@ public class Tablero {
         }
     }
 
-    public void placeEntities(){
+    public void placeEntities() {
         for (Entity entity : entities) {
             board[entity.getX()][entity.getY()].setEntity(entity);
         }
     }
 
-    public void printBoard(){
+    public Entity getEntity(int x, int y) {
+        return board[x][y].getEntity();
+    }
+
+    public void moveEntity(Entity entity, int newX, int newY) {
+        board[entity.getX()][entity.getY()].setEntity(null);
+        board[newX][newY].setEntity(entity);
+    }
+
+    public void printBoard() {
+        System.out.println("--------------------------------");
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (board[i][j].getEntity() == null){
+                if (board[i][j].getEntity() == null) {
                     System.out.print("[ ]");
-                }else{
+                } else {
                     System.out.print("[" + board[i][j].getEntity().getSymbol() + "]");
                 }
             }
             System.out.println();
         }
+        System.out.println("--------------------------------");
+    }
+
+    public int getSize() {
+        return size;
     }
 }

@@ -12,18 +12,29 @@ public abstract class Entity {
         this.symbol = symbol;
         this.status = status;
     }
-    public int getX(){
+
+    public int getX() {
         return x;
     }
-    public int getY(){
+
+    public int getY() {
         return y;
     }
-    
-    public char getSymbol(){
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public char getSymbol() {
         return symbol;
     }
-    public String info(){
+
+    public String info() {
         return "Symbol: " + symbol + " Position: (" + x + ", " + y + ") Status: " + status;
     }
-    
+
 }
