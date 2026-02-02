@@ -32,12 +32,12 @@ public class Tablero {
         return board[x][y].getEntity();
     }
 
-    public void moveEntity(Entity entity, int newX, int newY) {
+    public synchronized void moveEntity(Entity entity, int newX, int newY) {
         board[entity.getX()][entity.getY()].setEntity(null);
         board[newX][newY].setEntity(entity);
     }
 
-    public void printBoard() {
+    public synchronized void printBoard() {
         System.out.println("--------------------------------");
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {

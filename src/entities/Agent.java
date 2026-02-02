@@ -35,6 +35,7 @@ public class Agent extends Entity implements Runnable {
       tablero.printBoard();
 
       if (getX() == neoX && getY() == neoY) {
+        tablero.getEntity(getX(), getY()).setStatus(Status.DEAD);
         System.out.println("El Agente ha atrapado a Neo!");
         break;
       }

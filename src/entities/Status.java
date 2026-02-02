@@ -4,6 +4,7 @@ public enum Status {
     ALIVE,
     DEAD,
     REPOSO,
-    ACTIVO
+    ACTIVO,
+    FREE
 
 }

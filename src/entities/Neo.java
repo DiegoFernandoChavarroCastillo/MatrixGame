@@ -45,6 +45,7 @@ public class Neo extends Entity implements Runnable {
             }
         }
         System.out.println("Neo ha llegado al teléfono!");
+        setStatus(Status.FREE);
     }
 
     public void moveToPhone(int phoneX, int phoneY) {
@@ -93,6 +94,7 @@ public class Neo extends Entity implements Runnable {
         if (entidad instanceof Wall || entidad instanceof Agent) {
             return false;
         }
+
 
         return true;
     }

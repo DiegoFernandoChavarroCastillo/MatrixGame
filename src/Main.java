@@ -26,11 +26,9 @@ public class Main {
         tablero.placeEntities();
         tablero.printBoard();
 
-        // Iniciar el movimiento de Neo
+
         Thread neoThread = new Thread(neo);
         neoThread.start();
-
-        // Iniciar el movimiento del Agente
         Thread agentThread = new Thread(agente);
         agentThread.start();
     }
